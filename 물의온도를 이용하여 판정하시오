@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Console;
+
+namespace test
+{
+    class Program
+    {        
+        static void Main(string[] args)
+        {
+            //온도 입력
+            float inputDegree = float.Parse(ReadLine());
+
+            if (inputDegree >= 80)
+            {
+                WriteLine("끓는 물");
+            }
+            else if (inputDegree >= 40)
+            {
+                WriteLine("온수");
+            }
+            else if (inputDegree >= 25)
+            {
+                WriteLine("미온수");
+            }
+            else if (inputDegree >= 0)
+            {
+                WriteLine("냉수");
+            }
+            else
+            {
+                WriteLine("잘못 입력 하셨습니다.");
+            }
+        }
+
+    }
+}
