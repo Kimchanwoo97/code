@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Console;
+
+namespace test
+{
+    class Program
+    {       
+        static void Main(string[] args)
+        {
+            //섭씨온도를 입력받기
+            Write("섭씨온도 : ");
+            float cDegree = float.Parse(ReadLine()); //섭씨온도
+            
+
+            float fDegree = 1.8f; //화씨온도
+
+            Write("화씨온도 : ");
+            WriteLine(cDegree * fDegree + 32 );
+
+            
+
+
+        }
+    }
+}
