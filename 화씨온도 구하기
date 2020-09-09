@@ -12,7 +12,7 @@ namespace test
         static void Main(string[] args)
         {
             //섭씨온도를 입력받기
-            Write("섭씨온도 : ");
+            Write("섭씨온도를 입력 하세요. ");
             float cDegree = float.Parse(ReadLine()); //섭씨온도
             
 
