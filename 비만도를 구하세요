@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Console;
+
+namespace test
+{
+    class Program
+    {        
+        static void Main(string[] args)
+        {
+            // 키(신장), 체중(몸무게)변수 생성
+            float hieght, weight;
+
+            Write("<< 신장(키) 값을 입력하세요 >> ");
+            hieght = float.Parse(ReadLine());
+
+            Write("<< 체중(몸무게) 값을 입력하세요 >> ");
+            weight = float.Parse(ReadLine());
+
+            hieght = hieght / 100;
+            double bm = weight / (hieght * hieght);
+
+            bm = Math.Round(bm, 2);
+
+            if(bm > 25)
+            {
+                WriteLine("비만도 : " + bm);
+                WriteLine("비만입니다.");
+            }
+            
+
+        }
+    }
+}
