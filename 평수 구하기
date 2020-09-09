@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Console;
+
+namespace test
+{
+    class Program
+    {        
+        static void Main(string[] args)
+        {
+            //면적 입력
+            Write("<< 분양면적을 입력하세요 >> ");
+            float m2Area = float.Parse(ReadLine());                    
+                       
+            //평수계산
+            double pyungArea = m2Area / 3.305785f;
+
+            //소수점 자리수 2자리 까지 표현
+            pyungArea = Math.Round(pyungArea, 2); 
+            
+            //평수가 30과 같거나 크다면
+            if (pyungArea >= 30)
+            {
+                WriteLine(pyungArea + " 평 대형입니다.");
+            }
+            else
+            {
+                WriteLine(pyungArea + " 평 소형입니다.");
+            }
+
+        }
+    }
+}
