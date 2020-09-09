@@ -1,0 +1,24 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Console;
+
+namespace test
+{
+    class Program
+    {        
+        static void Main(string[] args)
+        {
+            Write("<< 가로길이를 입력하세요 >> ");
+            int width = int.Parse(ReadLine()); //가로길이
+            Write("<< 세로길이를 입력하세요 >> ");
+            int height = int.Parse(ReadLine()); //세로길이
+
+            int area = width * height; //면적
+
+            WriteLine("면적 : " + area);
+        }
+    }
+}
