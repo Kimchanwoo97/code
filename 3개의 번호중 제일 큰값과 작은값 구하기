@@ -1,0 +1,92 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Console;
+
+namespace test
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int num1, num2, num3;
+
+            Write("<< 첫번째 번호를 입력하시오 >> ");
+            num1 = int.Parse(ReadLine());
+            Write("<< 두번째 번호를 입력하시오 >> ");
+            num2 = int.Parse(ReadLine());
+            Write("<< 세번째 번호를 입력하시오 >> ");
+            num3 = int.Parse(ReadLine());
+
+            WriteLine(" ");
+
+            //같은 수가 있다면 중지 
+            if(num1 == num3 || num1 == num2 || num2 == num3)
+            {
+                WriteLine("같은 값의 수가 포함되어 있습니다.");
+                return;
+            }
+            
+            //3개의 값중 제일 큰 값 판정
+            if (num1 > num2)
+            {
+                if (num1 > num3)
+                {
+                    Write("제일 큰 수는 : ");
+                    WriteLine("첫번째 번호 : " + num1);
+                }
+                else
+                {
+                    Write("제일 큰 수는 : ");
+                    WriteLine("세번째 번호 : " + num3);
+                }
+            }
+            else
+            {
+                if (num2 > num3)
+                {
+                    Write("제일 큰 수는 : ");
+                    WriteLine("두번째 번호 : " + num2);
+                }
+                else
+                {
+                    Write("제일 큰 수는 : ");
+                    WriteLine("세번째 번호 : " + num3);
+                }
+            }
+
+            //3개의 값중 제일 작은 값 판정
+
+            if (num1 > num2)
+            {
+                if (num2 > num3)
+                {
+                    Write("제일 작은 수는 : ");
+                    WriteLine("세번째 번호 : " + num3);
+                }
+                else
+                {
+                    Write("제일 작은 수는 : ");
+                    WriteLine("두번째 번호 : " + num2);
+                }
+            }
+            else
+            {
+                if (num1 > num3)
+                {
+                    Write("제일 작은 수는 : ");
+                    WriteLine("세번째 번호 : " + num3);
+                }
+                else
+                {
+                    Write("제일 작은 수는 : ");
+                    WriteLine("첫번째 번호 : " + num1);
+                }
+            }
+
+        }
+
+    }
+}
