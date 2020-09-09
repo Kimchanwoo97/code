@@ -28,9 +28,13 @@ namespace test
             if(bm > 25)
             {
                 WriteLine("비만도 : " + bm);
-                WriteLine("비만입니다.");
+                WriteLine("비만 입니다.");
             }
-            
+            else
+            {
+                WriteLine("비만도 : " + bm);
+                WriteLine("정상 입니다.");
+            }
 
         }
     }
