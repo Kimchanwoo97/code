@@ -1,0 +1,184 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Console;
+using static System.Threading.Thread;
+
+namespace _1024
+{
+    class Program
+    {
+        enum RSP { 가위 = 1, 바위, 보, stop };
+
+
+        static void Main(string[] args)
+        {
+            Random r = new Random();
+            int Count = 0, win = 0, Lose = 0, Draw = 0, play = 0;
+
+
+            while (true)
+            {
+
+                WriteLine("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┏━━━━━━━━━━━━━┓");
+                WriteLine($"┃                                          ┃  ┃   승리 : {win}  ┃");
+                WriteLine("┃                                          ┃  ┃             ┃");
+                WriteLine($"┃                                          ┃  ┃   패배 : {Lose}  ┃");
+                WriteLine("┃                                          ┃  ┃             ┃");
+                WriteLine($"┃                                          ┃  ┃  무승부 : {Draw} ┃");
+                WriteLine("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ┗━━━━━━━━━━━━━┛");
+                SetCursorPosition(11, 2);
+                ForegroundColor = ConsoleColor.Yellow;
+                WriteLine("***가위바위보  게임***");
+                SetCursorPosition(2, 3);
+                ForegroundColor = ConsoleColor.Blue;
+                WriteLine("게임방법 : 가위 , 바위 , 보 를 적어주세요");
+                SetCursorPosition(17, 5);
+                ForegroundColor = ConsoleColor.Red;
+                WriteLine($"경고 : {Count}회");
+
+
+                ForegroundColor = ConsoleColor.White;
+                SetCursorPosition(0, 7);
+
+                Write("무엇을 내시겠습니까? ");
+                string player = ReadLine();
+
+                RSP rsp = (RSP)r.Next(1, 4);
+                string com = rsp.ToString();
+
+                if (player != "가위" && player != "바위" && player != "보")
+                {
+                    Write("잘못 입력 하셨습니다 ");
+                    ForegroundColor = ConsoleColor.Red;
+                    WriteLine(" - 경고 -");
+                    ForegroundColor = ConsoleColor.White;
+                    Count++;
+
+                    if (Count > 3)
+                    {
+                        WriteLine("이미 3번의 경고 받으셨습니다");
+                        Sleep(1000);
+                        WriteLine("프로그램을 종료합니다");
+                        Environment.Exit(0);
+                    }
+                }
+                else
+                {
+                    if (player == "가위")
+                    {
+                        WriteLine("  ┏━┓┏━┓");
+                        WriteLine("  ┃ ┃┃ ┃");
+                        WriteLine("┏━┨ ┗┛ ┣┳┓");
+                        WriteLine("┃ ┛    ┃┃┃");
+                        WriteLine("┗━━┓  ┏━━┛");
+                    }
+                    else if (player == "바위")
+                    {
+                        WriteLine("┏━┯━┯━┯━┯━┓");
+                        WriteLine("┃ ┃ ┃ ┃ ┃ ┃");
+                        WriteLine("┣━┷━┷━┷━┷━┫");
+                        WriteLine("┃         ┃");
+                        WriteLine("┗━━┓  ┏━━━┛");
+                    }
+                    else
+                    {
+                        WriteLine("  ┏━┯━┯━┯━┓");
+                        WriteLine("┏━┫ ┃ ┃ ┃ ┃");
+                        WriteLine("┃ ┃ ┃ ┃ ┃ ┃");
+                        WriteLine("┃         ┃");
+                        WriteLine("┗━━┓  ┏━━━┛");
+                    }
+                }
+
+                SetCursorPosition(15, 11);
+                WriteLine("VS");
+
+                if (com == "가위")
+                {
+                    SetCursorPosition(20, 8);
+                    WriteLine("  ┏━┓┏━┓");
+                    SetCursorPosition(20, 9);
+                    WriteLine("  ┃ ┃┃ ┃");
+                    SetCursorPosition(20, 10);
+                    WriteLine("┏━┨ ┗┛ ┣┳┓");
+                    SetCursorPosition(20, 11);
+                    WriteLine("┃ ┛    ┃┃┃");
+                    SetCursorPosition(20, 12);
+                    WriteLine("┗━━┓  ┏━━┛");
+                }
+                else if (com == "바위")
+                {
+                    SetCursorPosition(20, 8);
+                    WriteLine("┏━┯━┯━┯━┯━┓");
+                    SetCursorPosition(20, 9);
+                    WriteLine("┃ ┃ ┃ ┃ ┃ ┃");
+                    SetCursorPosition(20, 10);
+                    WriteLine("┣━┷━┷━┷━┷━┫");
+                    SetCursorPosition(20, 11);
+                    WriteLine("┃         ┃");
+                    SetCursorPosition(20, 12);
+                    WriteLine("┗━━┓  ┏━━━┛");
+                }
+                else if (com == "보")
+                {
+                    SetCursorPosition(20, 8);
+                    WriteLine("  ┏━┯━┯━┯━┓");
+                    SetCursorPosition(20, 9);
+                    WriteLine("┏━┫ ┃ ┃ ┃ ┃");
+                    SetCursorPosition(20, 10);
+                    WriteLine("┃ ┃ ┃ ┃ ┃ ┃");
+                    SetCursorPosition(20, 11);
+                    WriteLine("┃         ┃");
+                    SetCursorPosition(20, 12);
+                    WriteLine("┗━━┓  ┏━━━┛");
+                }
+
+                if (player == com)
+                {
+                    WriteLine($"\nplayer : {player} vs {com} : com");
+                    ForegroundColor = ConsoleColor.DarkYellow;
+                    WriteLine("비겼습니다");
+                    Draw++;
+                    play++;
+                }
+                else if (player == "가위" && com == "보" || player == "바위" && com == "가위" || player == "보" && com == "바위")
+                {
+                    WriteLine($"\nplayer : {player} vs {com} : com");
+                    ForegroundColor = ConsoleColor.Blue;
+                    WriteLine("승리 하셨습니다");                     
+                    win++;
+                    play++;
+                }
+                else if (player == "가위" && com == "바위" || player == "바위" && com == "보" || player == "보" && com == "가위")
+                {
+                    WriteLine($"\nplayer : {player} vs {com} : com");
+                    ForegroundColor = ConsoleColor.Red;
+                    WriteLine("패배 하였습니다");
+                    Lose++;
+                    play++;
+                }
+
+                ForegroundColor = ConsoleColor.White;
+                SetCursorPosition(0, 17);
+                WriteLine("게임종료를 원하시면 종료를 입력해주시고");
+                WriteLine("게임진행을 원하시면 아무키나 두번 눌러주세요");
+
+                player = ReadLine();
+
+                if (player == "종료")
+                {
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    Clear();
+                }
+
+
+            }
+        }
+    }
+}
