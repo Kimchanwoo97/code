@@ -53,7 +53,7 @@ namespace ConsoleApp1
             WriteLine("┗━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┻━━━┛");
         }
     }
-     
+
     class Tast
     {
         public static void Obj(int x, int y, string s)
@@ -66,8 +66,8 @@ namespace ConsoleApp1
         {
             Random r = new Random();
             ConsoleKey key;
-            bool s = true , s1 = true, s2 = true, s3 = true;
-            
+            bool s = true, s1 = true, s2 = true, s3 = true;
+
             int px, py;
 
             px = 4;
@@ -76,7 +76,7 @@ namespace ConsoleApp1
             int x, y, x1, y1, x2, y2, x3, y3;
 
             #region com xy값
-            
+
             while (true)
             {
                 while (true)
@@ -137,8 +137,6 @@ namespace ConsoleApp1
             {
                 Screen screen = new Screen();
 
-
-
                 screen.Comscreen();
                 screen.Playerscreen();
 
@@ -146,7 +144,7 @@ namespace ConsoleApp1
                 {
                     Obj(x, y, "♣");
                 }
-                if(s1)
+                if (s1)
                 {
                     Obj(x1, y1, "♠");
                 }
@@ -161,9 +159,9 @@ namespace ConsoleApp1
 
 
                 Obj(px, py, "□");
-              
+
                 key = ReadKey(true).Key;
-                
+
                 switch (key)
                 {
                     case ConsoleKey.LeftArrow:
@@ -176,28 +174,28 @@ namespace ConsoleApp1
                         if (py > 4) py -= 2;
                         break;
                     case ConsoleKey.DownArrow:
-                        if (py < 25) py += 2;
+                        if (py < 22) py += 2;
                         break;
                     case ConsoleKey.Enter:
-                        if(px == x && py == y)
+                        if (px == x && py == y)
                         {
-                            s = true;
+                            s = false;
                         }
-                        if (px == x1&& py == y1)
+                        if (px == x1 && py == y1)
                         {
-                            s1 = true;
+                            s1 = false;
                         }
                         if (px == x2 && py == y2)
                         {
-                            s2 = true;
+                            s2 = false;
                         }
                         if (px == x3 && py == y3)
                         {
-                            s3 = true;
+                            s3 = false;
                         }
                         break;
-                }                      
-            }          
+                }
+            }
         }
     }
     class Program
@@ -212,7 +210,7 @@ namespace ConsoleApp1
 
                 key = ReadKey(true).Key;
 
-                switch(key)
+                switch (key)
                 {
                     case ConsoleKey.NumPad1:
                         continue;
