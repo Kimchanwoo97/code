@@ -18,12 +18,12 @@ namespace ConsoleApp1
             ForegroundColor = ConsoleColor.Red;
             WriteLine("Com Screen");
 
-            for(int i = 0; i < 1; i++)
+            for (int i = 0; i < 1; i++)
             {
-                for(int j = 1; j <= 10; j++)
+                for (int j = 1; j <= 10; j++)
                 {
                     ForegroundColor = ConsoleColor.Blue;
-                    SetCursorPosition(1, num+=2);
+                    SetCursorPosition(1, num += 2);
                     WriteLine(j);
                 }
             }
@@ -81,9 +81,9 @@ namespace ConsoleApp1
         {
             SetCursorPosition(30, 10);
             WriteLine("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
-                SetCursorPosition(30, 11+i);
+                SetCursorPosition(30, 11 + i);
                 WriteLine("┃                                            ┃");
             }
             SetCursorPosition(30, 16);
@@ -97,12 +97,12 @@ namespace ConsoleApp1
             SetCursorPosition(38, 14);
             WriteLine("Enter를 누르면 게임을 시작합니다.");
 
-           
+
         }
     }
 
     class Tast
-    {
+    {        
         public static void Obj(int x, int y, string s)
         {
             SetCursorPosition(x, y);
@@ -126,7 +126,8 @@ namespace ConsoleApp1
 
             Random r = new Random();
             ConsoleKey key;
-            bool s = true, s1 = true, s2 = true, s3 = true;
+            bool c = true, c1 = true, c2 = true, c3 = true;
+            bool p = true, p1 = true, p2 = true, p3 = true;
 
             int mx, my;
 
@@ -134,13 +135,17 @@ namespace ConsoleApp1
             my = 4;
 
             int x, y, x1, y1, x2, y2, x3, y3;
-            int px, py, px1, py1, px2, py2, px3, py3;
+            int px, px1, px2, px3, py, py1, py2, py3;
+
+            int fixednum = 52, fixednum1 = 2;
+            int i, num;
+
 
 
             #region com xy값           
 
             while (true)
-            {               
+            {
                 while (true)
                 {
                     x = r.Next(4, 41);
@@ -185,103 +190,256 @@ namespace ConsoleApp1
                     }
                 }
 
-                if (x != x1 && x != x2 && x != x3 && x1 != x2 && x1 != x3 && x2 != x3 &&
-                    y != y1 && y != y2 && y != y3 && y1 != y2 && y1 != y3 && y2 != y3)
+                if (x == x1 || x == x2 || x == x3 || x1 == x2 || x1 == x3 || x2 == x3)
                 {
-                    break;
+                    if (y != y1 || y != y2 || y != y3 || y1 != y2 || y1 != y3 || y2 != y3)
+                        break;
+                    else
+                        continue;
+                }
+                else if (y == y1 || y == y2 || y == y3 || y1 == y2 || y1 == y3 || y2 == y3)
+                {
+                    if (x != x1 || x != x2 || x != x3 || x1 != x2 || x1 != x3 || x2 != x3)
+                        break;
+                    else
+                        continue;
                 }
                 else
-                    continue;
-            }
-            #endregion
+                    break;
+
+            }           
+            
 
             while (true)
             {
-                
+                Clear();
+                i = 1;
 
+                Write($"x : {i}번째 숫자를 입력해주세요 : ");
+                num = int.Parse(ReadLine());
+                px = fixednum + (num * 4);
+
+                Write($"y : {i}번째 숫자를 입력해주세요 : ");
+                num = int.Parse(ReadLine());
+                py = fixednum1 + (num * 2);
+                ++i;
+
+                Write($"x : {i}번째 숫자를 입력해주세요 : ");
+                num = int.Parse(ReadLine());
+                px1 = fixednum + (num * 4);
+
+                Write($"y : {i}번째 숫자를 입력해주세요 : ");
+                num = int.Parse(ReadLine());
+                py1 = fixednum1 + (num * 2);
+                ++i;
+
+                Write($"x : {i}번째 숫자를 입력해주세요 : ");
+                num = int.Parse(ReadLine());
+                px2 = fixednum + (num * 4);
+
+                Write($"y : {i}번째 숫자를 입력해주세요 : ");
+                num = int.Parse(ReadLine());
+                py2 = fixednum1 + (num * 2);
+                ++i;
+
+                Write($"x : {i}번째 숫자를 입력해주세요 : ");
+                num = int.Parse(ReadLine());
+                px3 = fixednum + (num * 4);
+
+                Write($"y : {i}번째 숫자를 입력해주세요 : ");
+                num = int.Parse(ReadLine());
+                py3 = fixednum1 + (num * 2);
+                         
+                if (px == px1 || px == px2 || px == px3 || px1 == px2 || px1 == px3 || px2 == px3)
+                {
+                    if (py != py1 || py != py2 || py != py3 || py1 != py2 || py1 != py3 || py2 != py3)
+                        break;
+                    else
+                        continue;
+                }
+                else if (py == py1 || py == py2 || py == py3 || py1 == py2 || py1 == py3 || py2 == py3)
+                {
+                    if (px != px1 || px != px2 || px != px3 || px1 != px2 || px1 != px3 || px2 != px3)
+                        break;
+                    else
+                        continue;
+                }
+                else
+                    break;
+
+
+
+
+            }
+
+            #endregion
+
+            bool play = true;
+
+            while (true)
+            {
                 Clear();
 
                 screen.Comscreen();
                 screen.Playerscreen();
 
-                if (s)
+                if (p)
+                {
+                    Obj(px, py, "♣");
+                }
+                if (p1)
+                {
+                    Obj(px1, py1, "♠");
+                }
+                if (p2)
+                {
+                    Obj(px2, py2, "♥");
+                }
+                if (p3)
+                {
+                    Obj(px3, py3, "◆");
+                }
+
+                if (c)
                 {
                     Obj(x, y, "♣");
                 }
-                if (s1)
+                if (c1)
                 {
                     Obj(x1, y1, "♠");
                 }
-                if (s2)
+                if (c2)
                 {
                     Obj(x2, y2, "♥");
                 }
-                if (s3)
+                if (c3)
                 {
                     Obj(x3, y3, "◆");
                 }
 
-                ForegroundColor = ConsoleColor.Blue;
-                Obj(mx, my, "■");
-
-                ForegroundColor = ConsoleColor.White;
-                key = ReadKey(true).Key;
-
-                switch (key)
+                if (play)
                 {
-                    case ConsoleKey.LeftArrow:
-                        if (mx > 4) mx -= 4;
-                        break;
-                    case ConsoleKey.RightArrow:
-                        if (mx < 40) mx += 4;
-                        break;
-                    case ConsoleKey.UpArrow:
-                        if (my > 4) my -= 2;
-                        break;
-                    case ConsoleKey.DownArrow:
-                        if (my < 22) my += 2;
-                        break;
-                    case ConsoleKey.Enter:                       
-                        if (mx == x && my == y)
-                        {
-                            s = false;
-                            Obj3(5, 25, mx, my, "player");
-                            Sleep(1000);
-                        }
-                        else if (mx == x1 && my == y1)
-                        {
-                            s1 = false;
-                            Obj3(5, 25, mx, my, "player");
-                            Sleep(1000);
-                        }
-                        else if (mx == x2 && my == y2)
-                        {
-                            s2 = false;
-                            Obj3(5, 25, mx, my, "player");
-                            Sleep(1000);
-                        }
-                        else if (mx == x3 && my == y3)
-                        {
-                            s3 = false;
-                            Obj3(5, 25, mx, my, "player");
-                            Sleep(1000);
-                        }
-                        else
-                        {
-                            Obj2(5, 25, mx, my, "player");
-                            Sleep(1000);
-                        }
-                        break;
-                }
-               
+                    ForegroundColor = ConsoleColor.Blue;
+                    Obj(mx, my, "■");
 
-                if (!s1 && !s2 && !s3 && !s)
+                    ForegroundColor = ConsoleColor.White;
+                    key = ReadKey(true).Key;
+
+                    switch (key)
+                    {
+                        case ConsoleKey.LeftArrow:
+                            if (mx > 4) mx -= 4;
+                            break;
+                        case ConsoleKey.RightArrow:
+                            if (mx < 40) mx += 4;
+                            break;
+                        case ConsoleKey.UpArrow:
+                            if (my > 4) my -= 2;
+                            break;
+                        case ConsoleKey.DownArrow:
+                            if (my < 22) my += 2;
+                            break;
+                        case ConsoleKey.Enter:
+                            if (mx == x && my == y)
+                            {
+                                c = false;
+                                Obj3(5, 25, mx, my, "player");
+                                Sleep(1000);
+                                play = false;
+                            }
+                            else if (mx == x1 && my == y1)
+                            {
+                                c1 = false;
+                                Obj3(5, 25, mx, my, "player");
+                                Sleep(1000);
+                                play = false;
+                            }
+                            else if (mx == x2 && my == y2)
+                            {
+                                c2 = false;
+                                Obj3(5, 25, mx, my, "player");
+                                Sleep(1000);
+                                play = false;
+                            }
+                            else if (mx == x3 && my == y3)
+                            {
+                                c3 = false;
+                                Obj3(5, 25, mx, my, "player");
+                                Sleep(1000);
+                                play = false;
+                            }
+                            else
+                            {
+                                Obj2(5, 25, mx, my, "player");
+                                Sleep(1000);
+                                play = false;
+                            }
+                            break;
+                            
+                    }
+                }
+
+                if(!play)
+                {
+                    int cx, cy ,comx,comy;
+
+                    cx = r.Next(1, 11);
+                    cy = r.Next(1, 11);
+
+                    comx = fixednum1 + (cx * 4);
+                    comy = fixednum1 + (cy * 2);
+
+                    if(comx == px && comy == py)
+                    {
+                        p = false;
+                        Obj3(5, 25, comx, comy, "com");
+                        Sleep(1000);
+                        play = true;
+                    }
+                    else if (comx == px1 && comy == py1)
+                    {
+                        p1 = false;
+                        Obj3(5, 25, comx, comy, "com");
+                        Sleep(1000);
+                        play = true;
+                    }
+                    else if (comx == px2 && comy == py2)
+                    {
+                        p2 = false;
+                        Obj3(5, 25, comx, comy, "com");
+                        Sleep(1000);
+                        play = true;
+                    }
+                    else if (comx == px3 && comy == py3)
+                    {
+                        p3 = false;
+                        Obj3(5, 25, comx, comy, "com");
+                        Sleep(1000);
+                        play = true;
+                    }
+                    else
+                    {
+                        Obj2(5, 25, mx, my, "player");
+                        Sleep(1000);
+                        play = true;
+                    }
+                }
+
+                if (!c1 && !c2 && !c3 && !c)
                 {
                     SetCursorPosition(7, 25);
                     WriteLine("적의 위치를 전부 찾았습니다 Win");
                     break;
                 }
-                
+                else if (!p && !p1 && !p2 && !p3)
+                {
+                    SetCursorPosition(7, 25);
+                    WriteLine("적이 전함을 전부 찾았습니다 Drow");
+                    break;
+                }
+                else
+                    continue;
+
             }
         }
     }
@@ -304,7 +462,7 @@ namespace ConsoleApp1
                         break;
                     default:
                         return;
-                }                
+                }
 
                 tast.Game();
 
