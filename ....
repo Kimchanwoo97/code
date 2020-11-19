@@ -10,9 +10,10 @@ namespace ConsoleApp1
 {
     class Screen
     {
+
         public void Comscreen()
         {
-            int num = 2;
+            int num = 2, num1 = 0;
 
             SetCursorPosition(18, 1);
             ForegroundColor = ConsoleColor.Red;
@@ -23,8 +24,18 @@ namespace ConsoleApp1
                 for (int j = 1; j <= 10; j++)
                 {
                     ForegroundColor = ConsoleColor.Blue;
-                    SetCursorPosition(1, num += 2);
+                    SetCursorPosition(0, num += 2);
                     WriteLine(j);
+                }
+            }
+
+            for (int i = 0; i < 1; i++)
+            {
+                for (int j = 1; j <= 10; j++)
+                {
+                    ForegroundColor = ConsoleColor.Blue;
+                    SetCursorPosition(num1 += 4, 2);
+                    Write(j);
                 }
             }
 
@@ -46,7 +57,7 @@ namespace ConsoleApp1
 
         public void Playerscreen()
         {
-            int num = 2;
+            int num = 2, num1 = 52;
 
             SetCursorPosition(70, 1);
             ForegroundColor = ConsoleColor.Red;
@@ -57,8 +68,18 @@ namespace ConsoleApp1
                 for (int j = 1; j <= 10; j++)
                 {
                     ForegroundColor = ConsoleColor.Blue;
-                    SetCursorPosition(53, num += 2);
+                    SetCursorPosition(52, num += 2);
                     WriteLine(j);
+                }
+            }
+
+            for (int i = 0; i < 1; i++)
+            {
+                for (int j = 1; j <= 10; j++)
+                {
+                    ForegroundColor = ConsoleColor.Blue;
+                    SetCursorPosition(num1 += 4, 2);
+                    Write(j);
                 }
             }
 
@@ -102,7 +123,7 @@ namespace ConsoleApp1
     }
 
     class Tast
-    {        
+    {
         public static void Obj(int x, int y, string s)
         {
             SetCursorPosition(x, y);
@@ -119,6 +140,7 @@ namespace ConsoleApp1
             SetCursorPosition(x, y);
             WriteLine($"{name}가 ({(s1 - 2) / 2}, {s / 4})에서 적을 찾았습니다.");
         }
+       
 
         public void Game()
         {
@@ -207,8 +229,8 @@ namespace ConsoleApp1
                 else
                     break;
 
-            }           
-            
+            }
+
 
             while (true)
             {
@@ -249,8 +271,8 @@ namespace ConsoleApp1
                 Write($"y : {i}번째 숫자를 입력해주세요 : ");
                 num = int.Parse(ReadLine());
                 py3 = fixednum1 + (num * 2);
-                         
-                if (px == px1 || px == px2 || px == px3 || px1 == px2 || px1 == px3 || px2 == px3)
+
+                if (py == px1 || px == px2 || px == px3 || px1 == px2 || px1 == px3 || px2 == px3)
                 {
                     if (py != py1 || py != py2 || py != py3 || py1 != py2 || py1 != py3 || py2 != py3)
                         break;
@@ -266,11 +288,8 @@ namespace ConsoleApp1
                 }
                 else
                     break;
-
-
-
-
             }
+            
 
             #endregion
 
@@ -340,7 +359,31 @@ namespace ConsoleApp1
                             if (my < 22) my += 2;
                             break;
                         case ConsoleKey.Enter:
-                            if (mx == x && my == y)
+                            if (!c && mx == x && my == y)
+                            {
+                                Obj2(5, 25, mx, my, "player");
+                                Sleep(1000);
+                                play = false;
+                            }
+                            else if (!c1 && mx == x1 && my == y1)
+                            {
+                                Obj2(5, 25, mx, my, "player");
+                                Sleep(1000);
+                                play = false;
+                            }
+                            else if (!c2 && mx == x2 && my == y2)
+                            {
+                                Obj2(5, 25, mx, my, "player");
+                                Sleep(1000);
+                                play = false;
+                            }
+                            else if (!c3 && mx == x3 && my == y3)
+                            {
+                                Obj2(5, 25, mx, my, "player");
+                                Sleep(1000);
+                                play = false;
+                            }
+                            else if (mx == x && my == y)
                             {
                                 c = false;
                                 Obj3(5, 25, mx, my, "player");
@@ -374,52 +417,57 @@ namespace ConsoleApp1
                                 Sleep(1000);
                                 play = false;
                             }
+
+                           
                             break;
-                            
+
                     }
                 }
 
-                if(!play)
+                if (!play)
                 {
-                    int cx, cy ,comx,comy;
+                    int cx, cy, comx, comy;                    
 
                     cx = r.Next(1, 11);
                     cy = r.Next(1, 11);
 
-                    comx = fixednum1 + (cx * 4);
+                    comx = fixednum + (cx * 4);
                     comy = fixednum1 + (cy * 2);
 
-                    if(comx == px && comy == py)
+
+                    Obj(comx, comy, "◎");
+
+                    if (comx == px && comy == py)
                     {
                         p = false;
-                        Obj3(5, 25, comx, comy, "com");
+                        Obj3(55, 25, comx, comy, "com");
                         Sleep(1000);
                         play = true;
                     }
                     else if (comx == px1 && comy == py1)
                     {
                         p1 = false;
-                        Obj3(5, 25, comx, comy, "com");
+                        Obj3(55, 25, comx, comy, "com");
                         Sleep(1000);
                         play = true;
                     }
                     else if (comx == px2 && comy == py2)
                     {
                         p2 = false;
-                        Obj3(5, 25, comx, comy, "com");
+                        Obj3(55, 25, comx, comy, "com");
                         Sleep(1000);
                         play = true;
                     }
                     else if (comx == px3 && comy == py3)
                     {
                         p3 = false;
-                        Obj3(5, 25, comx, comy, "com");
+                        Obj3(55, 25, comx, comy, "com");
                         Sleep(1000);
                         play = true;
                     }
                     else
                     {
-                        Obj2(5, 25, mx, my, "player");
+                        Obj2(55, 25, comx - fixednum, comy, "com");
                         Sleep(1000);
                         play = true;
                     }
