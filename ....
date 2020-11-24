@@ -1,4 +1,4 @@
-using System;
+sing System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +27,8 @@ namespace ConsoleApp1
                     SetCursorPosition(0, num += 2);
                     WriteLine(j);
                 }
+                SetCursorPosition(0, 24);
+                WriteLine("Y");
             }
 
             for (int i = 0; i < 1; i++)
@@ -37,6 +39,8 @@ namespace ConsoleApp1
                     SetCursorPosition(num1 += 4, 2);
                     Write(j);
                 }
+                SetCursorPosition(44, 2);
+                WriteLine("X");
             }
 
             ForegroundColor = ConsoleColor.White;
@@ -71,6 +75,8 @@ namespace ConsoleApp1
                     SetCursorPosition(52, num += 2);
                     WriteLine(j);
                 }
+                SetCursorPosition(52, 24);
+                WriteLine("Y");
             }
 
             for (int i = 0; i < 1; i++)
@@ -81,6 +87,8 @@ namespace ConsoleApp1
                     SetCursorPosition(num1 += 4, 2);
                     Write(j);
                 }
+                SetCursorPosition(96, 2);
+                WriteLine("X");
             }
 
             ForegroundColor = ConsoleColor.White;
@@ -130,6 +138,12 @@ namespace ConsoleApp1
             WriteLine(s);
         }
 
+        public static void itam(int x, int y)
+        {
+            SetCursorPosition(x, y);
+            WriteLine("유도탄 발사에 실패하였습니다.");
+        }
+
         public static void Obj2(int x, int y, int s, int s1, string name)
         {
             SetCursorPosition(x, y);
@@ -140,21 +154,34 @@ namespace ConsoleApp1
             SetCursorPosition(x, y);
             WriteLine($"{name}가 ({(s1 - 2) / 2}, {s / 4})에서 적을 찾았습니다.");
         }
-        public static void Objxy(int x, int y, int cx)
+        public static void Obj4(int x, int y, int s, int s1, string name)
         {
             SetCursorPosition(x, y);
-            WriteLine($"적의 위치중 하나는 x : {cx / 4}줄에 있습니다;");
+            WriteLine($"{name}가 ({(s1 - 2) / 2}, {(s - 52) / 4})에서 적을 찾았습니다.");
         }
+        public static void Objxy(int x, int y, int s, int s1 ,string name)
+        {
+            SetCursorPosition(x, y);
+            WriteLine($"{name}가 유도탄을 보내 ({(s1-2) /2}, {s / 4})위치의 적함대를 파괴하였습니다");
+        }
+        public static void Objxy2(int x, int y, int s, int s1, string name)
+        {
+            SetCursorPosition(x, y);
+            WriteLine($"{name}이 유도탄을 보내 ({(s1 - 2) / 2}, {s / 4})위치의 적함대를 파괴하였습니다");
+        }
+
 
 
         public void Game()
         {
+            CursorVisible = false;
+
             Screen screen = new Screen();
 
             Random r = new Random();
             ConsoleKey key;
-            bool c = true, c1 = true, c2 = true, c3 = true , citam = true;
-            bool p = true, p1 = true, p2 = true, p3 = true, pitam = true;
+            bool c = true, c1 = true, c2 = true, c3 = true, pitam = true;
+            bool p = true, p1 = true, p2 = true, p3 = true, citam = true;
 
             int mx, my;
 
@@ -167,6 +194,8 @@ namespace ConsoleApp1
 
             int fixednum = 52, fixednum1 = 2;
             int i, num;
+
+            int count = 0;
 
 
 
@@ -217,7 +246,7 @@ namespace ConsoleApp1
                     }
                 }
 
-                if(x == y || x == x2 || x == x3 || x1 == x2 || x1 == x3 || x2 == x3)
+                if (x == y || x == x2 || x == x3 || x1 == x2 || x1 == x3 || x2 == x3)
                 {
                     if (y != y1 && y != y2 && y != y3 && y1 != y2 && y1 != y3 && y2 != y3)
                         break;
@@ -279,6 +308,7 @@ namespace ConsoleApp1
                 num = int.Parse(ReadLine());
                 py3 = fixednum1 + (num * 2);
 
+
                 if (py == px1 || px == px2 || px == px3 || px1 == px2 || px1 == px3 || px2 == px3)
                 {
                     if (py != py1 && py != py2 && py != py3 && py1 != py2 && py1 != py3 && py2 != py3)
@@ -295,29 +325,30 @@ namespace ConsoleApp1
                 }
                 else
                     break;
+
             }
 
 
-            //while (true)
-            //{
-            //    pskillx = r.Next(4, 41);
-            //    pskilly = r.Next(5, 23);
+            while (true)
+            {
+                pskillx = r.Next(4, 41);
+                pskilly = r.Next(5, 23);
 
-            //    if (pskillx % 4 == 0 && pskilly % 2 == 0)
-            //    {
-            //        break;
-            //    }
-                
-            //}
+                if (pskillx % 4 == 0 && pskilly % 2 == 0)
+                {
+                    break;
+                }
+
+            }
 
 
-            //int rnum, rnum1;
+            int rnum, rnum1;
 
-            //rnum = r.Next(1, 10);
-            //rnum1 = r.Next(1, 10);
+            rnum = r.Next(1, 10);
+            rnum1 = r.Next(1, 10);
 
-            //cskillx = fixednum + (rnum * 4);
-            //cskilly = fixednum1 + (rnum1 * 2);
+            cskillx = fixednum + (rnum * 4);
+            cskilly = fixednum1 + (rnum1 * 2);
 
 
             #endregion
@@ -347,10 +378,10 @@ namespace ConsoleApp1
                 {
                     Obj(px3, py3, "◆");
                 }
-                //if(pitam)
-                //{
-                //    Obj(pskillx, pskilly, "※");
-                //}
+                if (pitam)
+                {
+                    Obj(pskillx, pskilly, "※");
+                }
 
                 if (c)
                 {
@@ -368,10 +399,10 @@ namespace ConsoleApp1
                 {
                     Obj(x3, y3, "◆");
                 }
-                //if (citam)
-                //{
-                //    Obj(cskillx, cskilly, "※");
-                //}
+                if (citam)
+                {
+                    Obj(cskillx, cskilly, "※");
+                }
 
                 if (play)
                 {
@@ -401,24 +432,28 @@ namespace ConsoleApp1
                                 Obj2(5, 25, mx, my, "player");
                                 Sleep(1000);
                                 play = false;
+                                count++;
                             }
                             else if (!c1 && mx == x1 && my == y1)
                             {
                                 Obj2(5, 25, mx, my, "player");
                                 Sleep(1000);
                                 play = false;
+                                count++;
                             }
                             else if (!c2 && mx == x2 && my == y2)
                             {
                                 Obj2(5, 25, mx, my, "player");
                                 Sleep(1000);
                                 play = false;
+                                count++;
                             }
                             else if (!c3 && mx == x3 && my == y3)
                             {
                                 Obj2(5, 25, mx, my, "player");
                                 Sleep(1000);
                                 play = false;
+                                count++;
                             }
                             else if (mx == x && my == y)
                             {
@@ -426,6 +461,7 @@ namespace ConsoleApp1
                                 Obj3(5, 25, mx, my, "player");
                                 Sleep(1000);
                                 play = false;
+                                count++;
                             }
                             else if (mx == x1 && my == y1)
                             {
@@ -433,6 +469,7 @@ namespace ConsoleApp1
                                 Obj3(5, 25, mx, my, "player");
                                 Sleep(1000);
                                 play = false;
+                                count++;
                             }
                             else if (mx == x2 && my == y2)
                             {
@@ -440,6 +477,7 @@ namespace ConsoleApp1
                                 Obj3(5, 25, mx, my, "player");
                                 Sleep(1000);
                                 play = false;
+                                count++;
                             }
                             else if (mx == x3 && my == y3)
                             {
@@ -447,11 +485,88 @@ namespace ConsoleApp1
                                 Obj3(5, 25, mx, my, "player");
                                 Sleep(1000);
                                 play = false;
-                            }                                                       
+                                count++;
+                            }
+                            else if(mx == pskillx && my == pskilly)
+                            {
+                                if(pitam)
+                                {
+                                    SetCursorPosition(5, 26);
+                                    WriteLine("player가 유도탄 스위치를 찾았습니다");
+                                    Sleep(2000);
+                                    int itampr = r.Next(1,5);
+                                    switch(itampr)
+                                    {
+                                        case 1:
+                                            if (c)
+                                            {
+                                                Objxy(15, 27, x, y, "player"); Sleep(1000);
+                                                c = false;
+                                                count++;
+                                            }
+                                            else
+                                            {
+                                                itam(5, 27);
+                                                count++;
+                                            }
+                                            break;
+                                        case 2:                                           
+                                            if (c1)
+                                            {
+                                                Objxy(15, 27, x1, y1, "player"); Sleep(1000);
+                                                c1 = false;
+                                                count++;
+                                            }
+                                            else
+                                            {
+                                                itam(5, 27);
+                                                count++;
+                                            }
+                                            break;
+                                        case 3:
+                                            if (c2)
+                                            {
+                                                Objxy(15, 27, x2, y2, "player"); Sleep(1000);
+                                                c2 = false;
+                                                count++;
+                                            }
+                                            else
+                                            {
+                                                itam(5, 27);
+                                                count++;
+                                            }
+                                            break;
+                                        case 4:
+                                            if (c3)
+                                            {
+                                                Objxy(15, 27, x3, y3, "player"); Sleep(1000);
+                                                c3 = false;
+                                                count++;
+                                            }
+                                            else
+                                            {
+                                                itam(5, 27);
+                                                count++;
+                                            }
+                                            break;
+                                   
+                                    }
+                                }
+                                else
+                                {
+                                    Obj2(5, 25, mx, my, "player");
+                                    Sleep(1000);
+                                    count++;                                    
+                                }
+                                pitam = false;
+                                play = false;
+                                count++;
+                            }
                             else
                             {
                                 Obj2(5, 25, mx, my, "player");
                                 Sleep(1000);
+                                count++;
                                 play = false;
                             }
                             break;
@@ -469,36 +584,136 @@ namespace ConsoleApp1
                     comx = fixednum + (cx * 4);
                     comy = fixednum1 + (cy * 2);
 
+                   
+                    
+                   
+
+                    if (count == 10 || count == 22 || count == 30 || count == 35)
+                    {
+                        switch (count)
+                        {
+                            case 10:
+                                p = false;
+                                Obj4(55, 25, px, py, "com");
+                                comx = px; comy = py;
+                                Obj(comx, comy, "◎");
+                                Sleep(1000);
+                                play = true;
+                                break;
+
+                            case 22:
+                                p1 = false;
+                                Obj4(55, 25, px1, py1, "com");
+                                comx = px1; comy = py1;
+                                Obj(comx, comy, "◎");
+                                Sleep(1000);
+                                play = true;
+                                break;
+
+                            case 30:
+                                p2 = false;
+                                Obj4(55, 25, px2, py2, "com");
+                                comx = px2; comy = py2;
+                                Obj(comx, comy, "◎");
+                                Sleep(1000);
+                                play = true;
+                                break;
+
+                            case 35:
+                                p3 = false;
+                                Obj4(55, 25, px3, py3, "com");
+                                comx = px3; comy = py3;
+                                Obj(comx, comy, "◎");
+                                Sleep(1000);
+                                play = true;
+                                break;
+                        }                          
+                    }
 
                     Obj(comx, comy, "◎");
 
                     if (comx == px && comy == py)
                     {
-                        p = false;
-                        Obj3(55, 25, comx, comy, "com");
-                        Sleep(1000);
-                        play = true;
+                        if (p)
+                        {
+                            p = false;
+                            Obj4(55, 25, comx, comy, "com");
+                            Sleep(1000);
+                            play = true;
+                        }
                     }
                     else if (comx == px1 && comy == py1)
                     {
-                        p1 = false;
-                        Obj3(55, 25, comx, comy, "com");
-                        Sleep(1000);
-                        play = true;
+                        if (p1)
+                        {
+                            p1 = false;
+                            Obj4(55, 25, comx, comy, "com");
+                            Sleep(1000);
+                            play = true;
+                        }
                     }
                     else if (comx == px2 && comy == py2)
                     {
-                        p2 = false;
-                        Obj3(55, 25, comx, comy, "com");
-                        Sleep(1000);
-                        play = true;
+                        if (p2)
+                        {
+                            p2 = false;
+                            Obj4(55, 25, comx, comy, "com");
+                            Sleep(1000);
+                            play = true;
+                        }
                     }
                     else if (comx == px3 && comy == py3)
                     {
-                        p3 = false;
-                        Obj3(55, 25, comx, comy, "com");
-                        Sleep(1000);
-                        play = true;
+                        if (p3)
+                        {
+                            p3 = false;
+                            Obj4(55, 25, comx, comy, "com");
+                            Sleep(1000);
+                            play = true;
+                        }
+                    }
+                    else if(comx == cskillx && comy == cskilly)
+                    {
+                        if(citam)
+                        {
+                            SetCursorPosition(5, 26);
+                            WriteLine("com이 유도탄 스위치를 찾았습니다.");
+                            Sleep(2000);
+                            int itamcr = r.Next(1, 5);
+                            switch(itamcr)
+                            {
+                                case 1:
+                                    if (p) Objxy2(15, 27, comx, comy, "com");
+                                    Sleep(1000);
+                                    p = false;
+                                    break;
+                                case 2:
+                                    if (p1) Objxy2(15, 27, comx, comy, "com");
+                                    Sleep(1000);
+                                    p1 = false;
+                                    break;
+                                case 3:
+                                    if (p2) Objxy2(15, 27, comx, comy, "com");
+                                    Sleep(1000);
+                                    p2 = false;
+                                    break;
+                                case 4:
+                                    if (p3) Objxy2(15, 27, comx, comy, "com");
+                                    Sleep(1000);
+                                    p3 = false;
+                                    break;
+                                
+                            }
+                            play = true;
+                            citam = false;
+                        }
+                        else
+                        {
+                            Obj3(55, 25, comx, comy, "com");
+                            Sleep(1000);
+                            play = true;
+                        }
+
                     }
                     else
                     {
@@ -508,15 +723,16 @@ namespace ConsoleApp1
                     }
                 }
 
+
                 if (!c1 && !c2 && !c3 && !c)
-                {
-                    SetCursorPosition(7, 25);
+                {                    
+                    SetCursorPosition(20, 27);
                     WriteLine("적의 위치를 전부 찾았습니다 Win");
                     break;
                 }
                 else if (!p && !p1 && !p2 && !p3)
                 {
-                    SetCursorPosition(7, 25);
+                    SetCursorPosition(20, 27);
                     WriteLine("적이 전함을 전부 찾았습니다 Drow");
                     break;
                 }
@@ -544,6 +760,7 @@ namespace ConsoleApp1
                     case ConsoleKey.Enter:
                         break;
                     default:
+                        SetCursorPosition(0, 27);
                         return;
                 }
 
